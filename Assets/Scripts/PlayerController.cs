@@ -8,8 +8,10 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
     private float jumpForce = 500;
+    public bool inAir = false;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
+    public GameObject titleText;
 
     private Rigidbody rb;
     private int count;
@@ -34,6 +36,18 @@ public class PlayerController : MonoBehaviour
         movementY = movementVector.y;
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "GroundObject")
+            inAir = false;
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.tag == "GroundObject")
+            inAir = true;
+    }
+
     void SetCountText() 
     {
         countText.text = "Count: " + count.ToString();
@@ -48,8 +62,15 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
+
+        if(movementX > 0 || movementY > 0)
+        {
+            titleText.SetActive(false);
+        }
+
     }
 
+   
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag ("PickUp"))
@@ -63,6 +84,9 @@ public class PlayerController : MonoBehaviour
 
     void OnJump()
     {
-        rb.AddForce(new Vector3(0, jumpForce, 0));
+        if (!inAir)
+        {
+            rb.AddForce(new Vector3(0, jumpForce, 0));
+        }
     }
 }

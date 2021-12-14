@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
     public GameObject titleText;
+    public AudioSource collect;
 
     private Rigidbody rb;
     private int count;
@@ -76,6 +77,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag ("PickUp"))
         {
             other.gameObject.SetActive(false);
+            if (count > 1)
+            {
+                collect.Play();
+            }
 
             count += 1;
 

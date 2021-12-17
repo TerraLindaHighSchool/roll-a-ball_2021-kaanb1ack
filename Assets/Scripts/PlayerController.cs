@@ -7,7 +7,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
-    private float jumpForce = 500;
+    private float jumpForce = 440;
     public bool inAir = false;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private int count;
     private float movementX;
     private float movementY;
+    private Vector3 spawnPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +68,11 @@ public class PlayerController : MonoBehaviour
         if(movementX > 0 || movementY > 0)
         {
             titleText.SetActive(false);
+        }
+
+        if(gameObject.transform.position.y <- 10)
+        {
+            gameObject.transform.position = spawnPoint;
         }
 
     }

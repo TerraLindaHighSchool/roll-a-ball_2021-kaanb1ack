@@ -83,14 +83,16 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag ("PickUp"))
         {
             other.gameObject.SetActive(false);
-            if (count > 1)
-            {
-                collect.Play();
-            }
+            
 
             count += 1;
 
             SetCountText();  
+            
+            if (count > 2)
+            {
+                collect.Play();
+            }
         }
     }
 

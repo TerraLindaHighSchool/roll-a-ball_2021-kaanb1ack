@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
             SetCountText();  
             
-            if (count > 2)
+            if (count > 0)
             {
                 collect.Play();
             }

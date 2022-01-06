@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "GroundObject")
             inAir = false;
+      
     }
 
     void OnCollisionExit(Collision other)
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
     void SetCountText() 
     {
         countText.text = "Count: " + count.ToString();
-        if (count >= 13)
+        if (count >= 14)
         {
             winTextObject.SetActive(true);
         }
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour
                 collect.Play();
             }
         }
+
     }
 
     void OnJump()
@@ -103,4 +105,5 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector3(0, jumpForce, 0));
         }
     }
+
 }
